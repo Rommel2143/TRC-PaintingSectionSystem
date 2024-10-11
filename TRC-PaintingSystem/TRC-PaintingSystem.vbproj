@@ -162,6 +162,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="main\Module1.vb" />
+    <Compile Include="manage_item.Designer.vb">
+      <DependentUpon>manage_item.vb</DependentUpon>
+    </Compile>
+    <Compile Include="manage_item.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -190,16 +196,16 @@
     <Compile Include="main\sub_mainframe.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="outgoing_delivery.vb">
+    <Compile Include="printing\outgoing_delivery.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>outgoing_delivery.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="print_report.Designer.vb">
+    <Compile Include="printing\print_report.Designer.vb">
       <DependentUpon>print_report.vb</DependentUpon>
     </Compile>
-    <Compile Include="print_report.vb">
+    <Compile Include="printing\print_report.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Scan\scan_in.Designer.vb">
@@ -231,6 +237,9 @@
     <EmbeddedResource Include="main\Mainframe.resx">
       <DependentUpon>Mainframe.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="manage_item.resx">
+      <DependentUpon>manage_item.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -243,11 +252,11 @@
     <EmbeddedResource Include="main\sub_mainframe.resx">
       <DependentUpon>sub_mainframe.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="outgoing_delivery.rpt">
+    <EmbeddedResource Include="printing\outgoing_delivery.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>outgoing_delivery.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="print_report.resx">
+    <EmbeddedResource Include="printing\print_report.resx">
       <DependentUpon>print_report.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scan\scan_in.resx">

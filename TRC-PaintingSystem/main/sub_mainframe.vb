@@ -20,4 +20,8 @@ Public Class sub_mainframe
     Private Sub OUTToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OUTToolStripMenuItem.Click
         display_formscan(scan_out, "Scan OUT")
     End Sub
+
+    Private Sub AddItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddItemToolStripMenuItem.Click
+        display_formscan(manage_item, "Manage Item")
+    End Sub
 End Class

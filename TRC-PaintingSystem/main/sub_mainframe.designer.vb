@@ -57,11 +57,11 @@ Partial Class sub_mainframe
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Panel1.Location = New System.Drawing.Point(0, 41)
+        Me.Panel1.Location = New System.Drawing.Point(0, 95)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.MinimumSize = New System.Drawing.Size(40, 40)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1044, 747)
+        Me.Panel1.Size = New System.Drawing.Size(1044, 693)
         Me.Panel1.TabIndex = 12
         '
         'MasterlistToolStripMenuItem
@@ -83,19 +83,19 @@ Partial Class sub_mainframe
         Me.StockMonitoringToolStripMenuItem.Image = CType(resources.GetObject("StockMonitoringToolStripMenuItem.Image"), System.Drawing.Image)
         Me.StockMonitoringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.StockMonitoringToolStripMenuItem.Name = "StockMonitoringToolStripMenuItem"
-        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.StockMonitoringToolStripMenuItem.Text = "FG Stock"
         '
         'INToolStripMenuItem
         '
         Me.INToolStripMenuItem.Name = "INToolStripMenuItem"
-        Me.INToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.INToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.INToolStripMenuItem.Text = "IN"
         '
         'OUTToolStripMenuItem
         '
         Me.OUTToolStripMenuItem.Name = "OUTToolStripMenuItem"
-        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.OUTToolStripMenuItem.Text = "OUT"
         '
         'tool_manage
@@ -115,7 +115,7 @@ Partial Class sub_mainframe
         Me.AddItemToolStripMenuItem.Image = CType(resources.GetObject("AddItemToolStripMenuItem.Image"), System.Drawing.Image)
         Me.AddItemToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.AddItemToolStripMenuItem.Name = "AddItemToolStripMenuItem"
-        Me.AddItemToolStripMenuItem.Size = New System.Drawing.Size(157, 38)
+        Me.AddItemToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.AddItemToolStripMenuItem.Text = "Add Item"
         '
         'userstrip
@@ -279,9 +279,9 @@ Partial Class sub_mainframe
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1044, 788)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.error_panel)
         Me.Controls.Add(Me.Guna2GradientPanel1)
-        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "sub_mainframe"
