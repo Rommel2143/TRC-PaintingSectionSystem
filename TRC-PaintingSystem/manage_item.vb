@@ -74,8 +74,8 @@ Public Class manage_item
             End Using
 
             ' Insert new record
-            Dim insertQuery As String = "INSERT INTO `trc_user`(`IDno`, `firstname`, `middle`, `last`, `password`, `level`) " &
-                                        "VALUES (@IDno, @firstname, @middle,@last,NULL, '1')"
+            Dim insertQuery As String = "INSERT INTO `trc_user`(`IDno`, `firstname`, `middle`, `last`, `password`,`section`, `level`) " &
+                                        "VALUES (@IDno, @firstname, @middle,@last,NULL,'PAINTING' ,'1')"
             Using insertCmd As New MySqlCommand(insertQuery, con)
                 insertCmd.Parameters.AddWithValue("@IDno", txt_idno.Text)
                 insertCmd.Parameters.AddWithValue("@firstname", txt_first.Text)
@@ -100,6 +100,10 @@ Public Class manage_item
 
 
 
+
+    End Sub
+
+    Private Sub TabPage2_Click(sender As Object, e As EventArgs) Handles TabPage2.Click
 
     End Sub
 End Class

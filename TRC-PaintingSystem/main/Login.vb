@@ -90,7 +90,7 @@ Public Class Login
                             fname = dr("firstname").ToString()
                             idno = dr("IDno").ToString()
                             user_level = dr.GetInt32("level")
-                            Dim password As String = If(IsDBNull(dr("password")), String.Empty, dr("password").ToString())
+                            pass = If(IsDBNull(dr("password")), String.Empty, dr("password").ToString())
 
                             Select Case user_level
                                 Case 1

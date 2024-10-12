@@ -33,7 +33,7 @@ Partial Class scan_results
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Guna2Button1 = New Guna.UI2.WinForms.Guna2Button()
+        Me.btn_report = New Guna.UI2.WinForms.Guna2Button()
         Me.dtpicker = New Guna.UI2.WinForms.Guna2DateTimePicker()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.cmbuser = New Guna.UI2.WinForms.Guna2ComboBox()
@@ -55,7 +55,7 @@ Partial Class scan_results
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel1.BorderRadius = 5
-        Me.Guna2Panel1.Controls.Add(Me.Guna2Button1)
+        Me.Guna2Panel1.Controls.Add(Me.btn_report)
         Me.Guna2Panel1.Controls.Add(Me.dtpicker)
         Me.Guna2Panel1.Controls.Add(Me.Label4)
         Me.Guna2Panel1.Controls.Add(Me.cmbuser)
@@ -71,25 +71,25 @@ Partial Class scan_results
         Me.Guna2Panel1.Size = New System.Drawing.Size(343, 318)
         Me.Guna2Panel1.TabIndex = 0
         '
-        'Guna2Button1
+        'btn_report
         '
-        Me.Guna2Button1.Anchor = System.Windows.Forms.AnchorStyles.None
-        Me.Guna2Button1.BorderColor = System.Drawing.Color.DarkSlateBlue
-        Me.Guna2Button1.BorderRadius = 10
-        Me.Guna2Button1.BorderThickness = 1
-        Me.Guna2Button1.DisabledState.BorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button1.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
-        Me.Guna2Button1.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
-        Me.Guna2Button1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
-        Me.Guna2Button1.FillColor = System.Drawing.Color.White
-        Me.Guna2Button1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.Guna2Button1.ForeColor = System.Drawing.Color.DarkSlateBlue
-        Me.Guna2Button1.Image = CType(resources.GetObject("Guna2Button1.Image"), System.Drawing.Image)
-        Me.Guna2Button1.Location = New System.Drawing.Point(104, 246)
-        Me.Guna2Button1.Name = "Guna2Button1"
-        Me.Guna2Button1.Size = New System.Drawing.Size(124, 45)
-        Me.Guna2Button1.TabIndex = 20
-        Me.Guna2Button1.Text = "Print Report"
+        Me.btn_report.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.btn_report.BorderColor = System.Drawing.Color.DarkSlateBlue
+        Me.btn_report.BorderRadius = 10
+        Me.btn_report.BorderThickness = 1
+        Me.btn_report.DisabledState.BorderColor = System.Drawing.Color.DarkGray
+        Me.btn_report.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray
+        Me.btn_report.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer), CType(CType(169, Byte), Integer))
+        Me.btn_report.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer), CType(CType(141, Byte), Integer))
+        Me.btn_report.FillColor = System.Drawing.Color.White
+        Me.btn_report.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.btn_report.ForeColor = System.Drawing.Color.DarkSlateBlue
+        Me.btn_report.Image = CType(resources.GetObject("btn_report.Image"), System.Drawing.Image)
+        Me.btn_report.Location = New System.Drawing.Point(104, 246)
+        Me.btn_report.Name = "btn_report"
+        Me.btn_report.Size = New System.Drawing.Size(124, 45)
+        Me.btn_report.TabIndex = 20
+        Me.btn_report.Text = "Print Report"
         '
         'dtpicker
         '
@@ -245,7 +245,7 @@ Partial Class scan_results
         Me.datagrid2.RowHeadersVisible = False
         Me.datagrid2.RowTemplate.Height = 31
         Me.datagrid2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datagrid2.Size = New System.Drawing.Size(448, 273)
+        Me.datagrid2.Size = New System.Drawing.Size(336, 273)
         Me.datagrid2.TabIndex = 0
         '
         'datagrid1
@@ -365,5 +365,5 @@ Partial Class scan_results
     Friend WithEvents Label2 As Label
     Friend WithEvents Guna2ControlBox1 As Guna.UI2.WinForms.Guna2ControlBox
     Friend WithEvents Guna2BorderlessForm1 As Guna.UI2.WinForms.Guna2BorderlessForm
-    Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btn_report As Guna.UI2.WinForms.Guna2Button
 End Class

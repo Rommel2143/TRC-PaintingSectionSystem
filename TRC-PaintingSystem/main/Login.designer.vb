@@ -153,7 +153,7 @@ Partial Class Login
         Me.txt_password.Location = New System.Drawing.Point(196, 8)
         Me.txt_password.Margin = New System.Windows.Forms.Padding(5)
         Me.txt_password.Name = "txt_password"
-        Me.txt_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
+        Me.txt_password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txt_password.PlaceholderText = ""
         Me.txt_password.SelectedText = ""
         Me.txt_password.Size = New System.Drawing.Size(270, 42)

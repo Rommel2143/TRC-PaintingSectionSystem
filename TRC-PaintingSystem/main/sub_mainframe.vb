@@ -24,4 +24,23 @@ Public Class sub_mainframe
     Private Sub AddItemToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddItemToolStripMenuItem.Click
         display_formscan(manage_item, "Manage Item")
     End Sub
+
+    Private Sub tool_manage_Click(sender As Object, e As EventArgs) Handles tool_manage.Click
+
+    End Sub
+
+    Private Sub StockMonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockMonitoringToolStripMenuItem.Click
+        display_formscan(FG_stock, "FG Stock")
+    End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        con.Close()
+        Application.Exit()
+    End Sub
+
+    Private Sub ToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem2.Click
+        display_form(New Login)
+        Me.Close()
+
+    End Sub
 End Class

@@ -9,6 +9,12 @@ Public Class scan_results
 
     Public Sub loaddata(text As String)
         status = text
+        Select Case status
+            Case "IN"
+                btn_report.Visible = False
+            Case "OUT"
+                btn_report.Visible = True
+        End Select
     End Sub
 
     Private Sub dtpicker_ValueChanged(sender As Object, e As EventArgs) Handles dtpicker.ValueChanged
@@ -104,7 +110,7 @@ Public Class scan_results
             Dim cmdrefreshgrid As New MySqlCommand("SELECT `partname`,ts.partcode,  `lotnumber`, `remarks`, `qty` FROM `inventory_fg_scan` ts
                                                     JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
                                                     LEFT JOIN trc_user tsoout  ON ts.userin = tsoout.IDno
-                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchin`='" & cmb_batch.Text & "' ", con)
+                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "' ", con)
 
             Dim da As New MySqlDataAdapter(cmdrefreshgrid)
             Dim dt As New DataTable
@@ -115,10 +121,10 @@ Public Class scan_results
 
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`,ts.partcode, SUM(`qty`) FROM `inventory_fg_scan` ts
+            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`, SUM(`qty`) AS TOTAL FROM `inventory_fg_scan` ts
                                                     JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
-                                                    LEFT JOIN trc_user tsoout  ON ts.userout = tsoout.IDno
-                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchin`='" & cmb_batch.Text & "'
+                                                    LEFT JOIN trc_user tsoout  ON ts.userin = tsoout.IDno
+                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "'
                                                     GROUP BY ts.partcode", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)
@@ -182,7 +188,7 @@ Public Class scan_results
         End Select
     End Sub
 
-    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
+    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles btn_report.Click
         Dim print As New print_report
         print.viewdata(dtpicker.Value.ToString("yyyy-MM-dd"), cmbuser.Text, cmb_batch.Text)
         print.ShowDialog()
