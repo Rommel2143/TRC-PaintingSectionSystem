@@ -30,7 +30,7 @@ Public Class sub_mainframe
     End Sub
 
     Private Sub StockMonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockMonitoringToolStripMenuItem.Click
-        display_formscan(FG_stock, "FG Stock")
+        display_formscan(New FG_stock, "FG Stock")
     End Sub
 
     Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
@@ -42,5 +42,9 @@ Public Class sub_mainframe
         display_form(New Login)
         Me.Close()
 
+    End Sub
+
+    Private Sub RETURNToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RETURNToolStripMenuItem.Click
+        display_formscan(scan_return, "Return Box")
     End Sub
 End Class

@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ptif1-ds\SystemServer\Painting System\</UpdateUrl>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -410,6 +410,12 @@
     <Compile Include="Scan\scan_results.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Scan\scan_return.Designer.vb">
+      <DependentUpon>scan_return.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Scan\scan_return.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FG_stock.resx">
@@ -451,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scan\scan_results.resx">
       <DependentUpon>scan_results.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scan\scan_return.resx">
+      <DependentUpon>scan_return.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -9,7 +9,7 @@ Public Class scan_out
     Dim located As String
     Dim datein As Date
     Dim partcode As String
-    Dim qrcode As String
+
     Dim lotnumber As String
     Dim remarks As String
     Dim qty As Integer
@@ -36,7 +36,7 @@ Public Class scan_out
     End Sub
     Private Sub Txtqr_KeyDown(sender As Object, e As KeyEventArgs) Handles txtqr.KeyDown
         If e.KeyCode = Keys.Enter Then
-            qrcode = txtqr.Text
+
             txt_box.Enabled = True
             txt_box.Focus()
 
@@ -71,7 +71,7 @@ Public Class scan_out
 
                         Case "IN"
                             'update
-                            update_inventory_fg_scan()
+                            update_inventory_fg_scan(qrcode)
                             hide_error()
                         Case "OUT"
                             'duplicate
@@ -134,12 +134,12 @@ Public Class scan_out
         End Try
     End Sub
 
-    Private Sub update_inventory_fg_scan()
+    Private Sub update_inventory_fg_scan(qr As String)
         Try
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `inventory_fg_scan` SET `status`='OUT',`batchout`='" & batch & "',`dateout`='" & datedb & "',`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qrcode & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `inventory_fg_scan` SET `status`='OUT',`batchout`='" & batch & "',`dateout`='" & datedb & "',`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
 
         Catch ex As Exception

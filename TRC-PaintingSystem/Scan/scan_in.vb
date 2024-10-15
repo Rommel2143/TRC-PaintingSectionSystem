@@ -36,7 +36,7 @@ Public Class scan_in
     Private Sub Txtqr_KeyDown(sender As Object, e As KeyEventArgs) Handles txtqr.KeyDown
 
         If e.KeyCode = Keys.Enter Then
-            qrcode = txtqr.Text
+
             ProcessQRcode(txtqr.Text)
 
         End If
@@ -83,11 +83,11 @@ Public Class scan_in
 
                     con.Close()
                     con.Open()
-                    Dim cmdpartcode As New MySqlCommand("SELECT `partcode` FROM `inventory_fg_masterlist` WHERE `partcode`='" & partcode & "' LIMIT 1", con)
+                    Dim cmdpartcode As New MySqlCommand("SELECT `partcode` FROM `inventory_fg_masterlist` WHERE `partcode`='" & partcode & "' and section='PAINTING' LIMIT 1", con)
                     dr = cmdpartcode.ExecuteReader
                     If dr.Read = True Then
                         'SAVING
-                        insert_to_inventory_fg_scan()
+                        insert_to_inventory_fg_scan(qrcode)
                         hide_error()
                     Else  'CON 3 : PARTCODE
                         display_error("No Partcode Exists!", 0)
@@ -143,7 +143,7 @@ Public Class scan_in
         End Try
     End Sub
 
-    Private Sub insert_to_inventory_fg_scan()
+    Private Sub insert_to_inventory_fg_scan(qr As String)
         Try
 
             con.Close()
@@ -165,7 +165,7 @@ Public Class scan_in
                                                               '" & idno & "',
                                                               '" & datedb & "',
                                                               '" & partcode & "',
-                                                              '" & qrcode & "',
+                                                              '" & qr & "',
                                                               '" & lotnumber & "',
                                                               '" & remarks & "',
                                                               '" & qty & "',
