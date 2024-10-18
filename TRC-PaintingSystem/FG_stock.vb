@@ -70,4 +70,5 @@ Public Class FG_stock
         End Try
     End Sub
 
+
 End Class

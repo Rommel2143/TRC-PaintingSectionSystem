@@ -150,14 +150,6 @@ Public Class scan_out
 
     End Sub
 
-    Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel1.Paint
-
-    End Sub
-
-    Private Sub txt_box_TextChanged(sender As Object, e As EventArgs) Handles txt_box.TextChanged
-
-    End Sub
-
     Private Sub txt_box_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_box.KeyDown
         If e.KeyCode = Keys.Enter Then
 
@@ -167,14 +159,14 @@ Public Class scan_out
         End If
     End Sub
 
-    Private Sub txtqr_TextChanged(sender As Object, e As EventArgs) Handles txtqr.TextChanged
-
-    End Sub
-
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
         Dim results As New scan_results
         results.loaddata("OUT")
         results.ShowDialog()
         results.BringToFront()
+    End Sub
+
+    Private Sub txt_box_TextChanged(sender As Object, e As EventArgs) Handles txt_box.TextChanged
+
     End Sub
 End Class
