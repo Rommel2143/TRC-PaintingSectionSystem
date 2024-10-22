@@ -1,7 +1,12 @@
 ﻿Imports MySql.Data.MySqlClient
 Public Class Login
     Dim pass As String
+
+
+
+
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Dim maxRetries As Integer = 3 ' Set maximum number of retry attempts
         Dim currentRetry As Integer = 0 ' Track current retry count
         Dim connected As Boolean = False
@@ -13,10 +18,10 @@ Public Class Login
                 ' Attempt to connect to the database
                 If con.State = ConnectionState.Closed Then
                     con.Open()
-                    error_panel.Visible = False
+
                 End If
 
-                Dim cmdselect As New MySqlCommand("SELECT * FROM computer_location WHERE PCname = @PCname AND PCmac = @PCmac", con)
+                Dim cmdselect As New MySqlCommand("SELECT * FROM trc_device WHERE PCname = @PCname AND PCmac = @PCmac", con)
                 cmdselect.Parameters.AddWithValue("@PCname", PCname)
                 cmdselect.Parameters.AddWithValue("@PCmac", PCmac)
 
@@ -27,9 +32,10 @@ Public Class Login
                     txtbarcode.Focus()
                     PClocation = dr.GetString("location")
 
+
                     connected = True ' Mark as connected if successful
                 Else
-                    Dim result As DialogResult = MessageBox.Show("Machine not Verified!", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
+                    Dim result As DialogResult = MessageBox.Show("Machine not Verified!", "Verify first!", MessageBoxButtons.OKCancel, MessageBoxIcon.Information)
 
                     If result = DialogResult.OK Then
 
@@ -99,7 +105,7 @@ Public Class Login
 
                                     display_form(sub_mainframe)
                                     sub_mainframe.userstrip.Text = "Hello, " & fname
-                                    error_panel.Visible = False
+
                                     txtbarcode.Clear()
                                     Me.Close()
                                 Case 0
@@ -108,7 +114,7 @@ Public Class Login
                             End Select
 
                         Else
-                            noid()
+                            display_error("Invalid Credentials", 0)
                         End If
                     End Using
                 End Using
@@ -123,15 +129,6 @@ Public Class Login
     End Sub
 
 
-    Private Sub noid()
-        Try
-            error_panel.Visible = True
-
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-
-    End Sub
 
     Private Sub txt_password_KeyDown(sender As Object, e As KeyEventArgs) Handles txt_password.KeyDown
         If e.KeyCode = Keys.Enter Then
@@ -139,11 +136,11 @@ Public Class Login
                 sub_mainframe.tool_manage.Visible = True
                 display_form(sub_mainframe)
                 sub_mainframe.userstrip.Text = "Hello, " & fname
-                error_panel.Visible = False
+
                 txtbarcode.Clear()
                 Me.Close()
             Else
-                noid()
+                display_error("Invalid Credentials", 0)
             End If
 
 

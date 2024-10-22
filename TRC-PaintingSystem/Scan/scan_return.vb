@@ -40,7 +40,7 @@ Public Class scan_return
                 'CON 2 : IF SCANNED
                 con.Close()
                 con.Open()
-                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`located`,`datein` FROM `inventory_fg_scan` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
+                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`located`,`datein` FROM `painting_stock` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
                 dr = cmdselect.ExecuteReader
                 If dr.Read = True Then
                     status = dr.GetString("status")
@@ -54,8 +54,8 @@ Public Class scan_return
                             display_error("Duplicate Entry", 1)
 
                         Case "OUT"
-                            update_inventory_fg_scan(qrcode)
-                            hide_error()
+                            update_painting_stock(qrcode)
+
 
                     End Select
 
@@ -91,12 +91,12 @@ Public Class scan_return
         End Try
     End Sub
 
-    Private Sub update_inventory_fg_scan(qr As String)
+    Private Sub update_painting_stock(qr As String)
         Try
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `inventory_fg_scan` SET `status`='IN', returned='" & idno & "' WHERE qrcode='" & qr & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='IN', returned='" & idno & "',pcin='" & PCname & "' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
             refreshgrid()
         Catch ex As Exception

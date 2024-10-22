@@ -36,9 +36,6 @@ Partial Class Login
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtbarcode = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.error_panel = New Guna.UI2.WinForms.Guna2GradientPanel()
-        Me.Guna2PictureBox3 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.lbl_error = New System.Windows.Forms.Label()
         Me.Guna2Panel1.SuspendLayout()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel5.SuspendLayout()
@@ -46,8 +43,6 @@ Partial Class Login
         Me.panel_pass.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.error_panel.SuspendLayout()
-        CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Guna2Panel1
@@ -56,7 +51,6 @@ Partial Class Login
         Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel1.BorderRadius = 10
         Me.Guna2Panel1.Controls.Add(Me.Guna2Panel2)
-        Me.Guna2Panel1.Controls.Add(Me.error_panel)
         Me.Guna2Panel1.FillColor = System.Drawing.Color.White
         Me.Guna2Panel1.Location = New System.Drawing.Point(149, 92)
         Me.Guna2Panel1.Name = "Guna2Panel1"
@@ -232,46 +226,6 @@ Partial Class Login
         Me.txtbarcode.TabIndex = 0
         Me.txtbarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'error_panel
-        '
-        Me.error_panel.BorderRadius = 10
-        Me.error_panel.Controls.Add(Me.Guna2PictureBox3)
-        Me.error_panel.Controls.Add(Me.lbl_error)
-        Me.error_panel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.error_panel.FillColor = System.Drawing.Color.Red
-        Me.error_panel.FillColor2 = System.Drawing.Color.Salmon
-        Me.error_panel.Location = New System.Drawing.Point(0, 441)
-        Me.error_panel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.error_panel.Name = "error_panel"
-        Me.error_panel.Size = New System.Drawing.Size(810, 43)
-        Me.error_panel.TabIndex = 208
-        Me.error_panel.Visible = False
-        '
-        'Guna2PictureBox3
-        '
-        Me.Guna2PictureBox3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2PictureBox3.Image = CType(resources.GetObject("Guna2PictureBox3.Image"), System.Drawing.Image)
-        Me.Guna2PictureBox3.ImageRotate = 0!
-        Me.Guna2PictureBox3.Location = New System.Drawing.Point(13, 9)
-        Me.Guna2PictureBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Guna2PictureBox3.Name = "Guna2PictureBox3"
-        Me.Guna2PictureBox3.Size = New System.Drawing.Size(23, 23)
-        Me.Guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Guna2PictureBox3.TabIndex = 1
-        Me.Guna2PictureBox3.TabStop = False
-        '
-        'lbl_error
-        '
-        Me.lbl_error.AutoSize = True
-        Me.lbl_error.BackColor = System.Drawing.Color.Transparent
-        Me.lbl_error.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_error.ForeColor = System.Drawing.Color.White
-        Me.lbl_error.Location = New System.Drawing.Point(42, 13)
-        Me.lbl_error.Name = "lbl_error"
-        Me.lbl_error.Size = New System.Drawing.Size(119, 17)
-        Me.lbl_error.TabIndex = 0
-        Me.lbl_error.Text = "Invalid Credentials"
-        '
         'Login
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -292,9 +246,6 @@ Partial Class Login
         Me.Guna2Panel3.ResumeLayout(False)
         Me.Guna2Panel3.PerformLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.error_panel.ResumeLayout(False)
-        Me.error_panel.PerformLayout()
-        CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -306,9 +257,6 @@ Partial Class Login
     Friend WithEvents lbl_pcinfo As Label
     Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
-    Friend WithEvents error_panel As Guna.UI2.WinForms.Guna2GradientPanel
-    Friend WithEvents Guna2PictureBox3 As Guna.UI2.WinForms.Guna2PictureBox
-    Friend WithEvents lbl_error As Label
     Friend WithEvents Guna2Panel2 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Guna2Panel5 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents panel_pass As Guna.UI2.WinForms.Guna2Panel

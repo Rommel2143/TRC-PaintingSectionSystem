@@ -47,4 +47,10 @@ Public Class sub_mainframe
     Private Sub RETURNToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RETURNToolStripMenuItem.Click
         display_formscan(scan_return, "Return Box")
     End Sub
+
+    Private Sub ToolStripMenuItem5_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem5.Click
+        Dim pcname As New device_info
+        pcname.ShowDialog()
+
+    End Sub
 End Class

@@ -6,28 +6,17 @@ Public Class manage_item
 
     Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles btn_saveitem.Click
         Try
-
             If txt_partcode.Text = "" Or txt_partname.Text = "" Then
                 display_error("All fields are required!", 2)
                 Exit Sub
             End If
+
             con.Close()
             con.Open()
 
-            Dim checkQuery As String = "SELECT partcode FROM inventory_fg_masterlist WHERE partcode = @partcode"
-            Using checkCmd As New MySqlCommand(checkQuery, con)
-                checkCmd.Parameters.AddWithValue("@partcode", txt_partcode.Text)
-                Using dr = checkCmd.ExecuteReader()
-                    If dr.HasRows Then
-                        display_error("Partcode already exists!", 2)
-                        Exit Sub
-                    End If
-                End Using
-            End Using
-
             ' Insert new record
-            Dim insertQuery As String = "INSERT INTO inventory_fg_masterlist (partcode, partname, stockF1, stockU6, wipstock, section) " &
-                                        "VALUES (@partcode, @partname, 0, 0, 0, 'PAINTING')"
+            Dim insertQuery As String = "INSERT INTO painting_masterlist (partcode, partname) " &
+                                    "VALUES (@partcode, @partname)"
             Using insertCmd As New MySqlCommand(insertQuery, con)
                 insertCmd.Parameters.AddWithValue("@partcode", txt_partcode.Text)
                 insertCmd.Parameters.AddWithValue("@partname", txt_partname.Text)
@@ -37,15 +26,18 @@ Public Class manage_item
             txt_partcode.Clear()
             txt_partname.Clear()
             MessageBox.Show("Record Saved!")
-            hide_error()
 
-        Catch ex As Exception
-            display_error("Error: " & ex.Message, 2)
+        Catch ex As MySqlException
+            If ex.Number = 1062 Then ' Error code for duplicate entry
+                display_error("Part code already exists!", 2)
+            Else
+                display_error("Error: " & ex.Message, 2)
+            End If
         Finally
             con.Close()
-
         End Try
     End Sub
+
 
     Private Sub TabPage1_Click(sender As Object, e As EventArgs) Handles TabPage1.Click
 
@@ -89,7 +81,7 @@ Public Class manage_item
             txt_middle.Clear()
             txt_last.Clear()
             MessageBox.Show("User saved!")
-            hide_error()
+
 
         Catch ex As Exception
             display_error("Error: " & ex.Message, 2)

@@ -60,7 +60,7 @@ Public Class scan_out
                 'CON 2 : IF SCANNED
                 con.Close()
                 con.Open()
-                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`located`,`datein` FROM `inventory_fg_scan` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
+                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`located`,`datein` FROM `painting_stock` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
                 dr = cmdselect.ExecuteReader
                 If dr.Read = True Then
                     status = dr.GetString("status")
@@ -68,23 +68,22 @@ Public Class scan_out
 
                     Select Case status
 
-
                         Case "IN"
                             'update
-                            update_inventory_fg_scan(qrcode)
-                            hide_error()
+                            update_painting_stock(qrcode)
+
                         Case "OUT"
                             'duplicate
-                            display_error("Duplicate Entry", 1)
+                            display_error("Duplicate Entry", 2)
                     End Select
 
                 Else 'CON 2 : IF NOT SCANNED
-                    display_error("Record doesn't exist", 0)
+                    display_error("Record doesn't exist", 1)
 
                 End If
 
             Else  'CON 1 : QR SPLITING
-                display_error("INVALID QR FORMAT!", 0)
+                display_error("INVALID QR FORMAT!", 1)
 
             End If
 
@@ -104,20 +103,19 @@ Public Class scan_out
         Try
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid As New MySqlCommand("SELECT `qrcode`,`partcode`,  `lotnumber`, `remarks`, `qty` FROM `inventory_fg_scan`
-                                                    WHERE `dateout`='" & datedb & "' and `userout`='" & idno & "' and `batchout`='" & batch & "' and `located`='U1-4' ", con)
+            Dim cmdrefreshgrid As New MySqlCommand("SELECT `qrcode`,`partcode`,  `lotnumber`, `remarks`, `qty` FROM `painting_stock`
+                                                    WHERE `dateout`='" & datedb & "' and `userout`='" & idno & "' and `batchout`='" & batch & "' ", con)
 
             Dim da As New MySqlDataAdapter(cmdrefreshgrid)
             Dim dt As New DataTable
             da.Fill(dt)
             datagrid1.DataSource = dt
-            'datagrid1.AutoResizeColumns()
             da.Dispose()
 
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partcode`, SUM(`qty`) FROM `inventory_fg_scan`
-                                                    WHERE `dateout`='" & datedb & "' and `batchout`='" & batch & "' and `located`='U1-4' and `userout`='" & idno & "'
+            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partcode`, SUM(`qty`) FROM `painting_stock`
+                                                    WHERE `dateout`='" & datedb & "' and `batchout`='" & batch & "' and `userout`='" & idno & "'
                                                     GROUP BY partcode", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)
@@ -134,12 +132,12 @@ Public Class scan_out
         End Try
     End Sub
 
-    Private Sub update_inventory_fg_scan(qr As String)
+    Private Sub update_painting_stock(qr As String)
         Try
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `inventory_fg_scan` SET `status`='OUT',`batchout`='" & batch & "',`dateout`='" & datedb & "',`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='OUT',`batchout`='" & batch & "',`dateout`='" & datedb & "',`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
 
         Catch ex As Exception
@@ -167,6 +165,10 @@ Public Class scan_out
     End Sub
 
     Private Sub txt_box_TextChanged(sender As Object, e As EventArgs) Handles txt_box.TextChanged
+
+    End Sub
+
+    Private Sub txtqr_TextChanged(sender As Object, e As EventArgs) Handles txtqr.TextChanged
 
     End Sub
 End Class

@@ -28,6 +28,7 @@ Partial Class sub_mainframe
         Me.StockMonitoringToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.INToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RETURNToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tool_manage = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddItemToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.userstrip = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,16 +38,10 @@ Partial Class sub_mainframe
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.error_panel = New Guna.UI2.WinForms.Guna2GradientPanel()
-        Me.Guna2PictureBox3 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.lbl_error = New System.Windows.Forms.Label()
         Me.lbl_tittle = New System.Windows.Forms.Label()
         Me.Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
-        Me.RETURNToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
-        Me.error_panel.SuspendLayout()
-        CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2GradientPanel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -58,11 +53,11 @@ Partial Class sub_mainframe
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel1.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Panel1.Location = New System.Drawing.Point(0, 95)
+        Me.Panel1.Location = New System.Drawing.Point(0, 68)
         Me.Panel1.Margin = New System.Windows.Forms.Padding(0)
         Me.Panel1.MinimumSize = New System.Drawing.Size(40, 40)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1044, 693)
+        Me.Panel1.Size = New System.Drawing.Size(1044, 720)
         Me.Panel1.TabIndex = 12
         '
         'MasterlistToolStripMenuItem
@@ -84,7 +79,7 @@ Partial Class sub_mainframe
         Me.StockMonitoringToolStripMenuItem.Image = CType(resources.GetObject("StockMonitoringToolStripMenuItem.Image"), System.Drawing.Image)
         Me.StockMonitoringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.StockMonitoringToolStripMenuItem.Name = "StockMonitoringToolStripMenuItem"
-        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.StockMonitoringToolStripMenuItem.Text = "FG Stock"
         '
         'INToolStripMenuItem
@@ -92,7 +87,7 @@ Partial Class sub_mainframe
         Me.INToolStripMenuItem.Image = CType(resources.GetObject("INToolStripMenuItem.Image"), System.Drawing.Image)
         Me.INToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.INToolStripMenuItem.Name = "INToolStripMenuItem"
-        Me.INToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.INToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.INToolStripMenuItem.Text = "IN"
         '
         'OUTToolStripMenuItem
@@ -100,8 +95,16 @@ Partial Class sub_mainframe
         Me.OUTToolStripMenuItem.Image = CType(resources.GetObject("OUTToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OUTToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OUTToolStripMenuItem.Name = "OUTToolStripMenuItem"
-        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
         Me.OUTToolStripMenuItem.Text = "OUT"
+        '
+        'RETURNToolStripMenuItem
+        '
+        Me.RETURNToolStripMenuItem.Image = CType(resources.GetObject("RETURNToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.RETURNToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.RETURNToolStripMenuItem.Name = "RETURNToolStripMenuItem"
+        Me.RETURNToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
+        Me.RETURNToolStripMenuItem.Text = "RETURN"
         '
         'tool_manage
         '
@@ -162,7 +165,6 @@ Partial Class sub_mainframe
         '
         'ToolStripMenuItem5
         '
-        Me.ToolStripMenuItem5.Enabled = False
         Me.ToolStripMenuItem5.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.ToolStripMenuItem5.Image = CType(resources.GetObject("ToolStripMenuItem5.Image"), System.Drawing.Image)
         Me.ToolStripMenuItem5.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
@@ -204,45 +206,6 @@ Partial Class sub_mainframe
         Me.MenuStrip1.Size = New System.Drawing.Size(1044, 41)
         Me.MenuStrip1.TabIndex = 13
         '
-        'error_panel
-        '
-        Me.error_panel.Controls.Add(Me.Guna2PictureBox3)
-        Me.error_panel.Controls.Add(Me.lbl_error)
-        Me.error_panel.Dock = System.Windows.Forms.DockStyle.Top
-        Me.error_panel.FillColor = System.Drawing.Color.Red
-        Me.error_panel.FillColor2 = System.Drawing.Color.Salmon
-        Me.error_panel.Location = New System.Drawing.Point(0, 68)
-        Me.error_panel.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.error_panel.Name = "error_panel"
-        Me.error_panel.Size = New System.Drawing.Size(1044, 27)
-        Me.error_panel.TabIndex = 33
-        Me.error_panel.Visible = False
-        '
-        'Guna2PictureBox3
-        '
-        Me.Guna2PictureBox3.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2PictureBox3.Image = CType(resources.GetObject("Guna2PictureBox3.Image"), System.Drawing.Image)
-        Me.Guna2PictureBox3.ImageRotate = 0!
-        Me.Guna2PictureBox3.Location = New System.Drawing.Point(12, 2)
-        Me.Guna2PictureBox3.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Guna2PictureBox3.Name = "Guna2PictureBox3"
-        Me.Guna2PictureBox3.Size = New System.Drawing.Size(23, 23)
-        Me.Guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Guna2PictureBox3.TabIndex = 1
-        Me.Guna2PictureBox3.TabStop = False
-        '
-        'lbl_error
-        '
-        Me.lbl_error.AutoSize = True
-        Me.lbl_error.BackColor = System.Drawing.Color.Transparent
-        Me.lbl_error.Font = New System.Drawing.Font("Segoe UI Semibold", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_error.ForeColor = System.Drawing.Color.White
-        Me.lbl_error.Location = New System.Drawing.Point(41, 6)
-        Me.lbl_error.Name = "lbl_error"
-        Me.lbl_error.Size = New System.Drawing.Size(38, 17)
-        Me.lbl_error.TabIndex = 0
-        Me.lbl_error.Text = "Error"
-        '
         'lbl_tittle
         '
         Me.lbl_tittle.AutoSize = True
@@ -282,21 +245,12 @@ Partial Class sub_mainframe
         Me.Guna2PictureBox1.TabIndex = 1
         Me.Guna2PictureBox1.TabStop = False
         '
-        'RETURNToolStripMenuItem
-        '
-        Me.RETURNToolStripMenuItem.Image = CType(resources.GetObject("RETURNToolStripMenuItem.Image"), System.Drawing.Image)
-        Me.RETURNToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
-        Me.RETURNToolStripMenuItem.Name = "RETURNToolStripMenuItem"
-        Me.RETURNToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
-        Me.RETURNToolStripMenuItem.Text = "RETURN"
-        '
         'sub_mainframe
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1044, 788)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.error_panel)
         Me.Controls.Add(Me.Guna2GradientPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -305,9 +259,6 @@ Partial Class sub_mainframe
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.error_panel.ResumeLayout(False)
-        Me.error_panel.PerformLayout()
-        CType(Me.Guna2PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2GradientPanel1.ResumeLayout(False)
         Me.Guna2GradientPanel1.PerformLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -330,9 +281,6 @@ Partial Class sub_mainframe
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents INToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OUTToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents error_panel As Guna.UI2.WinForms.Guna2GradientPanel
-    Friend WithEvents Guna2PictureBox3 As Guna.UI2.WinForms.Guna2PictureBox
-    Friend WithEvents lbl_error As Label
     Friend WithEvents lbl_tittle As Label
     Friend WithEvents Guna2GradientPanel1 As Guna.UI2.WinForms.Guna2GradientPanel
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox

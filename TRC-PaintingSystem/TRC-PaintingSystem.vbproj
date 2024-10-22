@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ptif1-ds\SystemServer\Painting System\</UpdateUrl>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -327,10 +327,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="FG_stock.Designer.vb">
+    <Compile Include="manage\device_info.Designer.vb">
+      <DependentUpon>device_info.vb</DependentUpon>
+    </Compile>
+    <Compile Include="manage\device_info.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scan\FG_stock.Designer.vb">
       <DependentUpon>FG_stock.vb</DependentUpon>
     </Compile>
-    <Compile Include="FG_stock.vb">
+    <Compile Include="Scan\FG_stock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="main\Login.designer.vb">
@@ -346,10 +352,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="main\Module1.vb" />
-    <Compile Include="manage_item.Designer.vb">
+    <Compile Include="manage\manage_item.Designer.vb">
       <DependentUpon>manage_item.vb</DependentUpon>
     </Compile>
-    <Compile Include="manage_item.vb">
+    <Compile Include="manage\manage_item.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -418,7 +424,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FG_stock.resx">
+    <EmbeddedResource Include="manage\device_info.resx">
+      <DependentUpon>device_info.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scan\FG_stock.resx">
       <DependentUpon>FG_stock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="main\Login.resx">
@@ -427,7 +436,7 @@
     <EmbeddedResource Include="main\Mainframe.resx">
       <DependentUpon>Mainframe.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="manage_item.resx">
+    <EmbeddedResource Include="manage\manage_item.resx">
       <DependentUpon>manage_item.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">

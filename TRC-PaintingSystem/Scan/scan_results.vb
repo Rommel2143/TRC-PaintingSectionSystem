@@ -23,7 +23,7 @@ Public Class scan_results
                 Case "IN"
                     con.Close()
                     con.Open()
-                    Dim cmdselect As New MySqlCommand("Select distinct  CONCAT(`firstname`,' ',`last`) as fullname FROM `inventory_fg_scan`
+                    Dim cmdselect As New MySqlCommand("Select distinct  CONCAT(`firstname`,' ',`last`) as fullname FROM `painting_stock`
                                                 INNER JOIN `trc_user` ON `userin` = `IDno`
                                                 WHERE  `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "'", con)
                     dr = cmdselect.ExecuteReader
@@ -35,9 +35,9 @@ Public Class scan_results
                 Case "OUT"
                     con.Close()
                     con.Open()
-                    Dim cmdselect As New MySqlCommand("Select distinct CONCAT(`firstname`,' ',`last`) as fullname FROM `inventory_fg_scan`
+                    Dim cmdselect As New MySqlCommand("Select distinct CONCAT(`firstname`,' ',`last`) as fullname FROM `painting_stock`
                                                 INNER JOIN `trc_user` ON `userout` = `IDno`
-                                                WHERE  `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "'", con)
+                                                WHERE  `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and status='OUT'", con)
                     dr = cmdselect.ExecuteReader
                     cmbuser.Items.Clear()
                     While (dr.Read())
@@ -62,7 +62,7 @@ Public Class scan_results
                     con.Close()
                     con.Open()
                     Dim cmdselect As New MySqlCommand("SELECT DISTINCT ts.`batch` 
-                                               FROM `inventory_fg_scan` ts
+                                               FROM `painting_stock` ts
                                                LEFT JOIN trc_user tsoout 
                                                ON ts.userin = tsoout.IDno
                                                WHERE `datein` = @datein 
@@ -80,11 +80,11 @@ Public Class scan_results
                     con.Close()
                     con.Open()
                     Dim cmdselect As New MySqlCommand("SELECT DISTINCT ts.`batchout` 
-                                               FROM `inventory_fg_scan` ts
+                                               FROM `painting_stock` ts
                                                LEFT JOIN trc_user tsoout 
                                                ON ts.userout = tsoout.IDno
                                                WHERE `dateout` = @dateout
-                                               AND CONCAT(`firstname`, ' ', `last`) = @fullname", con)
+                                               AND CONCAT(`firstname`, ' ', `last`) = @fullname and status='OUT'", con)
 
                     cmdselect.Parameters.AddWithValue("@dateout", dtpicker.Value.ToString("yyyy-MM-dd"))
                     cmdselect.Parameters.AddWithValue("@fullname", cmbuser.Text)
@@ -107,10 +107,10 @@ Public Class scan_results
         Try
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid As New MySqlCommand("SELECT `partname`,ts.partcode,  `lotnumber`, `remarks`, `qty` FROM `inventory_fg_scan` ts
-                                                    JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
+            Dim cmdrefreshgrid As New MySqlCommand("SELECT `partname`,ts.partcode,  `lotnumber`, `remarks`, `qty` FROM `painting_stock` ts
+                                                    JOIN painting_masterlist fm ON ts.partcode=fm.partcode
                                                     LEFT JOIN trc_user tsoout  ON ts.userin = tsoout.IDno
-                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "' ", con)
+                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "'", con)
 
             Dim da As New MySqlDataAdapter(cmdrefreshgrid)
             Dim dt As New DataTable
@@ -121,10 +121,10 @@ Public Class scan_results
 
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`, SUM(`qty`) AS TOTAL FROM `inventory_fg_scan` ts
-                                                    JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
+            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`, SUM(`qty`) AS TOTAL FROM `painting_stock` ts
+                                                    JOIN painting_masterlist fm ON ts.partcode=fm.partcode
                                                     LEFT JOIN trc_user tsoout  ON ts.userin = tsoout.IDno
-                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "'
+                                                    WHERE `datein`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batch`='" & cmb_batch.Text & "' 
                                                     GROUP BY ts.partcode", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)
@@ -145,10 +145,10 @@ Public Class scan_results
         Try
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid As New MySqlCommand("SELECT `partname`,ts.partcode,  `lotnumber`, `remarks`, `qty` FROM `inventory_fg_scan` ts
-                                                    JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
+            Dim cmdrefreshgrid As New MySqlCommand("SELECT `partname`,ts.partcode,  `lotnumber`, `remarks`, `qty` FROM `painting_stock` ts
+                                                    JOIN painting_masterlist fm ON ts.partcode=fm.partcode
                                                     LEFT JOIN trc_user tsoout  ON ts.userout = tsoout.IDno
-                                                    WHERE `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchout`='" & cmb_batch.Text & "' ", con)
+                                                    WHERE `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchout`='" & cmb_batch.Text & "'  and status='OUT'", con)
 
             Dim da As New MySqlDataAdapter(cmdrefreshgrid)
             Dim dt As New DataTable
@@ -159,10 +159,10 @@ Public Class scan_results
 
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`,ts.partcode, SUM(`qty`) FROM `inventory_fg_scan` ts
-                                                    JOIN inventory_fg_masterlist fm ON ts.partcode=fm.partcode
+            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partname`,ts.partcode, SUM(`qty`) FROM `painting_stock` ts
+                                                    JOIN painting_masterlist fm ON ts.partcode=fm.partcode
                                                     LEFT JOIN trc_user tsoout  ON ts.userout = tsoout.IDno
-                                                    WHERE `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchout`='" & cmb_batch.Text & "'
+                                                    WHERE `dateout`='" & dtpicker.Value.ToString("yyyy-MM-dd") & "' and CONCAT(`firstname`, ' ', `last`)='" & cmbuser.Text & "' and `batchout`='" & cmb_batch.Text & "' and status='OUT'
                                                     GROUP BY ts.partcode", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)

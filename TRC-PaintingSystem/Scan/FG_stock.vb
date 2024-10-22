@@ -44,19 +44,19 @@ Public Class FG_stock
     End Sub
 
     Private Sub FG_stock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        refreshgrid()
+        painting_stock()
     End Sub
 
-    Private Sub refreshgrid()
+    Private Sub painting_stock()
         Try
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid As New MySqlCommand("SELECT fm.partname,fs.partcode,SUM(fs.qty) AS TOTAL_Stock FROM `inventory_fg_scan` fs 
-                                                    JOIN inventory_fg_masterlist fm ON fm.partcode=fs.partcode
-                                                    WHERE fm.section = 'PAINTING' and fs.status='IN'
+            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode,SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
+                                                    JOIN painting_masterlist fm ON fm.partcode=fs.partcode
+                                                    WHERE fs.status='IN'
                                                     GROUP BY fs.partcode", con)
 
-            Dim da As New MySqlDataAdapter(cmdrefreshgrid)
+            Dim da As New MySqlDataAdapter(cmdpainting_stock)
             Dim dt As New DataTable
             da.Fill(dt)
             datagrid1.DataSource = dt
@@ -70,5 +70,26 @@ Public Class FG_stock
         End Try
     End Sub
 
+    Private Sub txt_search_TextChanged(sender As Object, e As EventArgs) Handles txt_search.TextChanged
+        Try
+            con.Close()
+            con.Open()
+            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode,SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
+                                                    JOIN painting_masterlist fm ON fm.partcode=fs.partcode
+                                                    WHERE fs.status='IN' and (fm.partname REGEXP '" & txt_search.Text & "' or fs.partcode REGEXP '" & txt_search.Text & "')
+                                                    GROUP BY fs.partcode", con)
 
+            Dim da As New MySqlDataAdapter(cmdpainting_stock)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            datagrid1.DataSource = dt
+
+
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        Finally
+
+            con.Close()
+        End Try
+    End Sub
 End Class

@@ -6,10 +6,10 @@ Public Class Register_PC
     End Sub
 
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
-        If txtuser.Text = "PTRCI" And txtpassword.Text = "redhorsE" And cmblocation.Text IsNot "" Then
+        If txtuser.Text = "PTRCI" And txtpassword.Text = "redhorsE" Then
             con.Close()
             con.Open()
-            Dim cmdselect As New MySqlCommand("INSERT INTO `computer_location`(`PCname`, `PCmac`, `location`) VALUES ('" & PCname & "','" & PCmac & "','" & cmblocation.Text & "')", con)
+            Dim cmdselect As New MySqlCommand("INSERT INTO `trc_device`(`PCname`, `PCmac`, `location`) VALUES ('" & PCname & "','" & PCmac & "','PAINTING')", con)
             dr = cmdselect.ExecuteReader
             Dim result As DialogResult = MessageBox.Show("Machine Verified!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
@@ -23,7 +23,7 @@ Public Class Register_PC
                     .txtbarcode.Focus()
                     .BringToFront()
                     .Show()
-                    PClocation = cmblocation.Text
+                    PClocation = "PAINTING"
                 End With
             End If
         Else

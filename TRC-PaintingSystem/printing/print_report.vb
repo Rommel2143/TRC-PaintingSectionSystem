@@ -21,11 +21,11 @@ ts.userout,
     CONCAT(tsout.firstname, ' ', tsout.last) as Fullname,
     tm.partname
 FROM
-        inventory_fg_scan ts
+        painting_stock ts
     Left Join trc_user tsout ON ts.userout = tsout.IDno
-    Left Join inventory_fg_masterlist tm ON ts.partcode = tm.partcode
+    Left Join painting_masterlist tm ON ts.partcode = tm.partcode
 WHERE
-        ts.dateout = '" & dateout & "' and CONCAT(tsout.firstname, ' ', tsout.last) = '" & name & "' and ts.batchout='" & batchout & "'
+        ts.dateout = '" & dateout & "' and CONCAT(tsout.firstname, ' ', tsout.last) = '" & name & "' and ts.batchout='" & batchout & "' and ts.status='OUT'
 ORDER BY
     tm.partname;", con)
         Dim da As New MySqlDataAdapter(showreport)

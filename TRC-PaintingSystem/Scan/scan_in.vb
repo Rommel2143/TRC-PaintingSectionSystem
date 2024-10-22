@@ -58,24 +58,17 @@ Public Class scan_in
                 'CON 2 : IF SCANNED
                 con.Close()
                 con.Open()
-                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`located`,`datein` FROM `inventory_fg_scan` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
+                Dim cmdselect As New MySqlCommand("SELECT `qrcode`,`status`,`datein` FROM `painting_stock` WHERE `qrcode`='" & qrcode & "' LIMIT 1", con)
                 dr = cmdselect.ExecuteReader
                 If dr.Read = True Then
                     status = dr.GetString("status")
                     datein = dr.GetDateTime("datein")
 
                     Select Case status
-
-
                         Case "IN"
-
-                            display_error("Already Scanned on " & datein.ToString("MMMM-dd-yyyy"), 1)
-
+                            display_error("Already Scanned on " & datein.ToString("MMMM-dd-yyyy"), 2)
                         Case "OUT"
-
-                            display_error("Status : OUT", 0)
-
-
+                            display_error("Status : OUT", 1)
                     End Select
 
                 Else 'CON 2 : IF NOT SCANNED
@@ -83,24 +76,25 @@ Public Class scan_in
 
                     con.Close()
                     con.Open()
-                    Dim cmdpartcode As New MySqlCommand("SELECT `partcode` FROM `inventory_fg_masterlist` WHERE `partcode`='" & partcode & "' and section='PAINTING' LIMIT 1", con)
+                    Dim cmdpartcode As New MySqlCommand("SELECT `partcode` FROM `painting_masterlist` WHERE `partcode`='" & partcode & "' LIMIT 1", con)
                     dr = cmdpartcode.ExecuteReader
                     If dr.Read = True Then
                         'SAVING
-                        insert_to_inventory_fg_scan(qrcode)
-                        hide_error()
+                        insert_to_painting_stock(qrcode)
+
                     Else  'CON 3 : PARTCODE
-                        display_error("No Partcode Exists!", 0)
+                        display_error("No Partcode Exists!", 1)
                     End If
                 End If
 
             Else  'CON 1 : QR SPLITING
-                display_error("INVALID QR FORMAT!", 0)
+                display_error("INVALID QR FORMAT!", 1)
 
             End If
 
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
+
+        Catch ex As MySqlException
+            display_error("Error: " & ex.Message, 1)
         Finally
             txtqr.Text = ""
             txtqr.Focus()
@@ -113,8 +107,8 @@ Public Class scan_in
         Try
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid As New MySqlCommand("SELECT `qrcode`,`partcode`,  `lotnumber`, `remarks`, `qty` FROM `inventory_fg_scan`
-                                                    WHERE `datein`='" & datedb & "' and `userin`='" & idno & "' and `batch`='" & batch & "' and `located`='U1-4' ", con)
+            Dim cmdrefreshgrid As New MySqlCommand("SELECT `qrcode`,`partcode`,  `lotnumber`, `remarks`, `qty` FROM `painting_stock`
+                                                    WHERE `datein`='" & datedb & "' and `userin`='" & idno & "' and `batch`='" & batch & "' ", con)
 
             Dim da As New MySqlDataAdapter(cmdrefreshgrid)
             Dim dt As New DataTable
@@ -125,8 +119,8 @@ Public Class scan_in
 
             con.Close()
             con.Open()
-            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partcode`, SUM(`qty`) FROM `inventory_fg_scan`
-                                                    WHERE `datein`='" & datedb & "' and `batch`='" & batch & "' and `located`='U1-4' and `userin`='" & idno & "'
+            Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partcode`, SUM(`qty`) FROM `painting_stock`
+                                                    WHERE `datein`='" & datedb & "' and `batch`='" & batch & "'  and `userin`='" & idno & "'
                                                     GROUP BY partcode", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)
@@ -143,12 +137,12 @@ Public Class scan_in
         End Try
     End Sub
 
-    Private Sub insert_to_inventory_fg_scan(qr As String)
+    Private Sub insert_to_painting_stock(qr As String)
         Try
 
             con.Close()
             con.Open()
-            Dim cmdinsert As New MySqlCommand("INSERT INTO `inventory_fg_scan`(`status`,
+            Dim cmdinsert As New MySqlCommand("INSERT INTO `painting_stock`(`status`,
                                                                     `batch`,
                                                                     `userin`,
                                                                     `datein`,
@@ -169,7 +163,7 @@ Public Class scan_in
                                                               '" & lotnumber & "',
                                                               '" & remarks & "',
                                                               '" & qty & "',
-                                                              'U1-4',
+                                                              'U1',
                                                               '" & PCname & "')", con)
             cmdinsert.ExecuteNonQuery()
 
@@ -195,4 +189,7 @@ Public Class scan_in
         results.ShowDialog()
         results.BringToFront()
     End Sub
+
+
+
 End Class
