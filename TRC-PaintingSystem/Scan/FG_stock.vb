@@ -1,5 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports ClosedXML.Excel
+Imports Guna.Charts.WinForms
 Public Class FG_stock
     Private Sub export_excel_Click(sender As Object, e As EventArgs) Handles export_excel.Click
         Try
@@ -91,5 +92,170 @@ Public Class FG_stock
 
             con.Close()
         End Try
+    End Sub
+    Private Sub GunaChart1_Load(sender As Object, e As EventArgs) Handles GunaChart1.Load
+        ' Clear previous data
+        GunaChart1.Datasets.Clear()
+
+        ' Dictionary to hold datasets for each partcode
+        Dim datasets As New Dictionary(Of String, Guna.Charts.WinForms.GunaStackedHorizontalBarDataset)
+
+        ' Database query to get dateout and SUM(qty)
+        Dim query As String = "SELECT pm.partname, DATE_FORMAT(ps.dateout, '%m/%d/%Y') AS dateout, SUM(ps.qty) AS TotalQty " &
+                      "FROM painting_stock ps " &
+                      "JOIN painting_masterlist pm ON pm.partcode = ps.partcode " &
+                      "WHERE ps.dateout IS NOT NULL " &
+                      "GROUP BY dateout, pm.partname " &
+                      "ORDER BY dateout DESC"
+
+
+        Try
+            con.Open()
+            Using cmd As New MySqlCommand(query, con)
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    While reader.Read()
+                        ' Get partcode and formatted dateout
+                        Dim partname As String = reader("partname").ToString()
+                        Dim dateout As String = reader("dateout").ToString()
+                        Dim qty As Integer = Convert.ToInt32(reader("TotalQty"))
+
+                        ' Create a new dataset for the partcode if it doesn't exist
+                        If Not datasets.ContainsKey(partname) Then
+                            Dim dataset As New Guna.Charts.WinForms.GunaStackedHorizontalBarDataset()
+                            dataset.Label = partname
+                            datasets(partname) = dataset
+                            GunaChart1.Datasets.Add(dataset) ' Add to the chart
+                        End If
+
+                        ' Add the quantity to the respective dataset
+                        datasets(partname).DataPoints.Add(dateout, qty)
+
+
+
+
+
+                    End While
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message)
+        Finally
+            con.Close()
+        End Try
+
+        ' Update the chart
+        GunaChart1.Update()
+    End Sub
+
+    'Private Sub GunaChart2_Load(sender As Object, e As EventArgs) Handles GunaChart2.Load
+    '    ' Clear previous data
+    '    GunaChart2.Datasets.Clear()
+
+    '    ' Dictionary to hold datasets for each partcode
+    '    Dim datasets As New Dictionary(Of String, Guna.Charts.WinForms.GunaStackedHorizontalBarDataset)
+
+    '    ' Database query to get dateout and SUM(qty)
+    '    Dim query As String = "SELECT pm.partname, DATE_FORMAT(ps.datein, '%m/%d/%Y') AS DateIN, SUM(ps.qty) AS TotalQty " &
+    '                  "FROM painting_stock ps " &
+    '                  "JOIN painting_masterlist pm ON pm.partcode = ps.partcode " &
+    '                  "WHERE ps.datein IS NOT NULL " &
+    '                  "GROUP BY datein, pm.partname " &
+    '                  "ORDER BY datein DESC"
+
+
+    '    Try
+    '        con.Open()
+    '        Using cmd As New MySqlCommand(query, con)
+    '            Using reader As MySqlDataReader = cmd.ExecuteReader()
+    '                While reader.Read()
+    '                    ' Get partcode and formatted dateout
+    '                    Dim partname As String = reader("partname").ToString()
+    '                    Dim dateout As String = reader("datein").ToString()
+    '                    Dim qty As Integer = Convert.ToInt32(reader("TotalQty"))
+
+    '                    ' Create a new dataset for the partcode if it doesn't exist
+    '                    If Not datasets.ContainsKey(partname) Then
+    '                        Dim dataset As New Guna.Charts.WinForms.GunaStackedHorizontalBarDataset()
+    '                        dataset.Label = partname
+    '                        datasets(partname) = dataset
+    '                        GunaChart2.Datasets.Add(dataset) ' Add to the chart
+
+    '                    End If
+
+    '                    ' Add the quantity to the respective dataset
+    '                    datasets(partname).DataPoints.Add(dateout, qty)
+
+    '                    ' Add total quantity as a tooltip
+    '                    datasets(partname).DataPoints.Last().Tooltip = "Total Qty: " & qty.ToString()
+
+    '                End While
+    '            End Using
+    '        End Using
+    '    Catch ex As Exception
+    '        MessageBox.Show("Error loading data: " & ex.Message)
+    '    Finally
+    '        con.Close()
+    '    End Try
+
+    '    ' Update the chart
+    '    GunaChart2.Update()
+    'End Sub
+    Private Sub GunaChart2_Load(sender As Object, e As EventArgs) Handles GunaChart2.Load
+        ' Clear previous data
+        GunaChart2.Datasets.Clear()
+
+        ' Dictionary to hold datasets for each partname
+        Dim datasets As New Dictionary(Of String, Guna.Charts.WinForms.GunaStackedHorizontalBarDataset)
+
+        ' Database query to get dateout and SUM(qty)
+        Dim query As String = "SELECT pm.partname, DATE_FORMAT(ps.datein, '%m/%d/%Y') AS DateIN, SUM(ps.qty) AS TotalQty " &
+                          "FROM painting_stock ps " &
+                          "JOIN painting_masterlist pm ON pm.partcode = ps.partcode " &
+                          "WHERE ps.datein IS NOT NULL " &
+                          "GROUP BY datein, pm.partname " &
+                          "ORDER BY datein DESC"
+
+        Try
+            con.Open()
+            Using cmd As New MySqlCommand(query, con)
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    While reader.Read()
+                        ' Get partname and formatted datein
+                        Dim partname As String = reader("partname").ToString()
+                        Dim datein As String = reader("DateIN").ToString()
+                        Dim qty As Integer
+
+                        ' Use TryParse for safe conversion
+                        If Not Integer.TryParse(reader("TotalQty").ToString(), qty) Then
+                            MessageBox.Show("Invalid quantity data for part: " & partname)
+                            Continue While ' Skip to the next record
+                        End If
+
+                        ' Create a new dataset for the partname if it doesn't exist
+                        If Not datasets.ContainsKey(partname) Then
+                            Dim dataset As New Guna.Charts.WinForms.GunaStackedHorizontalBarDataset()
+                            dataset.Label = partname
+                            datasets(partname) = dataset
+                            GunaChart2.Datasets.Add(dataset) ' Add to the chart
+                        End If
+
+                        ' Add the quantity to the respective dataset
+                        datasets(partname).DataPoints.Add(datein, qty)
+
+                    End While
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message)
+        Finally
+            con.Close()
+        End Try
+
+        ' Update the chart
+        GunaChart2.Update()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
     End Sub
 End Class

@@ -41,6 +41,7 @@ Partial Class sub_mainframe
         Me.lbl_tittle = New System.Windows.Forms.Label()
         Me.Guna2GradientPanel1 = New Guna.UI2.WinForms.Guna2GradientPanel()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
+        Me.BoxInfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Guna2GradientPanel1.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +63,7 @@ Partial Class sub_mainframe
         '
         'MasterlistToolStripMenuItem
         '
-        Me.MasterlistToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StockMonitoringToolStripMenuItem, Me.INToolStripMenuItem, Me.OUTToolStripMenuItem, Me.RETURNToolStripMenuItem})
+        Me.MasterlistToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StockMonitoringToolStripMenuItem, Me.INToolStripMenuItem, Me.OUTToolStripMenuItem, Me.RETURNToolStripMenuItem, Me.BoxInfoToolStripMenuItem})
         Me.MasterlistToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MasterlistToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlDarkDark
         Me.MasterlistToolStripMenuItem.Image = CType(resources.GetObject("MasterlistToolStripMenuItem.Image"), System.Drawing.Image)
@@ -79,7 +80,7 @@ Partial Class sub_mainframe
         Me.StockMonitoringToolStripMenuItem.Image = CType(resources.GetObject("StockMonitoringToolStripMenuItem.Image"), System.Drawing.Image)
         Me.StockMonitoringToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.StockMonitoringToolStripMenuItem.Name = "StockMonitoringToolStripMenuItem"
-        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
+        Me.StockMonitoringToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.StockMonitoringToolStripMenuItem.Text = "FG Stock"
         '
         'INToolStripMenuItem
@@ -87,7 +88,7 @@ Partial Class sub_mainframe
         Me.INToolStripMenuItem.Image = CType(resources.GetObject("INToolStripMenuItem.Image"), System.Drawing.Image)
         Me.INToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.INToolStripMenuItem.Name = "INToolStripMenuItem"
-        Me.INToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
+        Me.INToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.INToolStripMenuItem.Text = "IN"
         '
         'OUTToolStripMenuItem
@@ -95,7 +96,7 @@ Partial Class sub_mainframe
         Me.OUTToolStripMenuItem.Image = CType(resources.GetObject("OUTToolStripMenuItem.Image"), System.Drawing.Image)
         Me.OUTToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.OUTToolStripMenuItem.Name = "OUTToolStripMenuItem"
-        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
+        Me.OUTToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.OUTToolStripMenuItem.Text = "OUT"
         '
         'RETURNToolStripMenuItem
@@ -103,7 +104,7 @@ Partial Class sub_mainframe
         Me.RETURNToolStripMenuItem.Image = CType(resources.GetObject("RETURNToolStripMenuItem.Image"), System.Drawing.Image)
         Me.RETURNToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
         Me.RETURNToolStripMenuItem.Name = "RETURNToolStripMenuItem"
-        Me.RETURNToolStripMenuItem.Size = New System.Drawing.Size(151, 38)
+        Me.RETURNToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
         Me.RETURNToolStripMenuItem.Text = "RETURN"
         '
         'tool_manage
@@ -245,6 +246,14 @@ Partial Class sub_mainframe
         Me.Guna2PictureBox1.TabIndex = 1
         Me.Guna2PictureBox1.TabStop = False
         '
+        'BoxInfoToolStripMenuItem
+        '
+        Me.BoxInfoToolStripMenuItem.Image = CType(resources.GetObject("BoxInfoToolStripMenuItem.Image"), System.Drawing.Image)
+        Me.BoxInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None
+        Me.BoxInfoToolStripMenuItem.Name = "BoxInfoToolStripMenuItem"
+        Me.BoxInfoToolStripMenuItem.Size = New System.Drawing.Size(196, 38)
+        Me.BoxInfoToolStripMenuItem.Text = "Box Info."
+        '
         'sub_mainframe
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -285,4 +294,5 @@ Partial Class sub_mainframe
     Friend WithEvents Guna2GradientPanel1 As Guna.UI2.WinForms.Guna2GradientPanel
     Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents RETURNToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BoxInfoToolStripMenuItem As ToolStripMenuItem
 End Class

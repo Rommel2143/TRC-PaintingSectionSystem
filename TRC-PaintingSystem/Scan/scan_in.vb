@@ -121,7 +121,7 @@ Public Class scan_in
             con.Open()
             Dim cmdrefreshgrid2 As New MySqlCommand("SELECT `partcode`, SUM(`qty`) FROM `painting_stock`
                                                     WHERE `datein`='" & datedb & "' and `batch`='" & batch & "'  and `userin`='" & idno & "'
-                                                    GROUP BY partcode", con)
+                                                    GROUP BY `partcode`", con)
 
             Dim da2 As New MySqlDataAdapter(cmdrefreshgrid2)
             Dim dt2 As New DataTable

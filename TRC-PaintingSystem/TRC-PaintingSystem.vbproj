@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <UpdateUrl>\\ptif1-ds\SystemServer\Painting System\</UpdateUrl>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>15</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -105,6 +105,9 @@
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.26.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
       <HintPath>packages\Google.Protobuf.3.26.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Guna.Charts.WinForms, Version=1.0.9.0, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>packages\Guna.Charts.WinForms.1.0.9\lib\net472\Guna.Charts.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
@@ -333,6 +336,12 @@
     <Compile Include="manage\device_info.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Scan\box_info.Designer.vb">
+      <DependentUpon>box_info.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Scan\box_info.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Scan\FG_stock.Designer.vb">
       <DependentUpon>FG_stock.vb</DependentUpon>
     </Compile>
@@ -426,6 +435,9 @@
   <ItemGroup>
     <EmbeddedResource Include="manage\device_info.resx">
       <DependentUpon>device_info.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scan\box_info.resx">
+      <DependentUpon>box_info.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scan\FG_stock.resx">
       <DependentUpon>FG_stock.vb</DependentUpon>

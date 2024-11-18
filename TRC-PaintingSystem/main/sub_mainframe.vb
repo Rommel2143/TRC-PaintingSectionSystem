@@ -53,4 +53,8 @@ Public Class sub_mainframe
         pcname.ShowDialog()
 
     End Sub
+
+    Private Sub BoxInfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BoxInfoToolStripMenuItem.Click
+        display_formscan(New box_info, "Box Information")
+    End Sub
 End Class

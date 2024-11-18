@@ -27,12 +27,47 @@ Partial Class FG_stock
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim ChartFont1 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont2 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont3 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont4 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid1 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim Tick1 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont5 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid2 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim Tick2 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont6 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid3 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim PointLabel1 As Guna.Charts.WinForms.PointLabel = New Guna.Charts.WinForms.PointLabel()
+        Dim ChartFont7 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Tick3 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont8 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont9 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont10 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont11 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim ChartFont12 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid4 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim Tick4 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont13 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid5 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim Tick5 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont14 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Grid6 As Guna.Charts.WinForms.Grid = New Guna.Charts.WinForms.Grid()
+        Dim PointLabel2 As Guna.Charts.WinForms.PointLabel = New Guna.Charts.WinForms.PointLabel()
+        Dim ChartFont15 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
+        Dim Tick6 As Guna.Charts.WinForms.Tick = New Guna.Charts.WinForms.Tick()
+        Dim ChartFont16 As Guna.Charts.WinForms.ChartFont = New Guna.Charts.WinForms.ChartFont()
         Me.Guna2GroupBox3 = New Guna.UI2.WinForms.Guna2GroupBox()
         Me.Guna2PictureBox1 = New Guna.UI2.WinForms.Guna2PictureBox()
         Me.datagrid1 = New Guna.UI2.WinForms.Guna2DataGridView()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.txt_search = New Guna.UI2.WinForms.Guna2TextBox()
         Me.export_excel = New Guna.UI2.WinForms.Guna2Button()
+        Me.GunaChart1 = New Guna.Charts.WinForms.GunaChart()
+        Me.stacked = New Guna.Charts.WinForms.GunaStackedHorizontalBarDataset()
+        Me.GunaChart2 = New Guna.Charts.WinForms.GunaChart()
+        Me.stacked_IN = New Guna.Charts.WinForms.GunaStackedHorizontalBarDataset()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Guna2GroupBox3.SuspendLayout()
         CType(Me.Guna2PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datagrid1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -41,21 +76,20 @@ Partial Class FG_stock
         '
         'Guna2GroupBox3
         '
-        Me.Guna2GroupBox3.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.Guna2GroupBox3.Controls.Add(Me.Guna2PictureBox1)
         Me.Guna2GroupBox3.Controls.Add(Me.datagrid1)
         Me.Guna2GroupBox3.Controls.Add(Me.Panel1)
         Me.Guna2GroupBox3.Controls.Add(Me.export_excel)
         Me.Guna2GroupBox3.CustomBorderColor = System.Drawing.Color.DarkSlateBlue
+        Me.Guna2GroupBox3.Dock = System.Windows.Forms.DockStyle.Left
         Me.Guna2GroupBox3.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2GroupBox3.ForeColor = System.Drawing.Color.White
-        Me.Guna2GroupBox3.Location = New System.Drawing.Point(324, 55)
+        Me.Guna2GroupBox3.Location = New System.Drawing.Point(0, 0)
         Me.Guna2GroupBox3.Name = "Guna2GroupBox3"
         Me.Guna2GroupBox3.ShadowDecoration.Color = System.Drawing.Color.DarkGray
         Me.Guna2GroupBox3.ShadowDecoration.Enabled = True
-        Me.Guna2GroupBox3.Size = New System.Drawing.Size(696, 710)
+        Me.Guna2GroupBox3.Size = New System.Drawing.Size(503, 820)
         Me.Guna2GroupBox3.TabIndex = 21
-        Me.Guna2GroupBox3.Text = "         FG Stock"
         '
         'Guna2PictureBox1
         '
@@ -115,7 +149,7 @@ Partial Class FG_stock
         Me.datagrid1.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.datagrid1.RowHeadersVisible = False
         Me.datagrid1.RowTemplate.Height = 31
-        Me.datagrid1.Size = New System.Drawing.Size(696, 612)
+        Me.datagrid1.Size = New System.Drawing.Size(503, 722)
         Me.datagrid1.TabIndex = 193
         Me.datagrid1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.datagrid1.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -142,11 +176,12 @@ Partial Class FG_stock
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Controls.Add(Me.Button1)
         Me.Panel1.Controls.Add(Me.txt_search)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 40)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(696, 58)
+        Me.Panel1.Size = New System.Drawing.Size(503, 58)
         Me.Panel1.TabIndex = 194
         '
         'txt_search
@@ -181,16 +216,122 @@ Partial Class FG_stock
         Me.export_excel.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.export_excel.ForeColor = System.Drawing.Color.White
         Me.export_excel.Image = CType(resources.GetObject("export_excel.Image"), System.Drawing.Image)
-        Me.export_excel.Location = New System.Drawing.Point(646, 0)
+        Me.export_excel.Location = New System.Drawing.Point(450, 0)
         Me.export_excel.Name = "export_excel"
         Me.export_excel.Size = New System.Drawing.Size(50, 39)
         Me.export_excel.TabIndex = 0
+        '
+        'GunaChart1
+        '
+        Me.GunaChart1.AutoScroll = True
+        Me.GunaChart1.Datasets.AddRange(New Guna.Charts.Interfaces.IGunaDataset() {Me.stacked})
+        Me.GunaChart1.Legend.Display = False
+        ChartFont1.FontName = "Arial"
+        Me.GunaChart1.Legend.LabelFont = ChartFont1
+        Me.GunaChart1.Location = New System.Drawing.Point(539, 417)
+        Me.GunaChart1.Name = "GunaChart1"
+        Me.GunaChart1.PaletteCustomColors.FillColors.AddRange(New System.Drawing.Color() {System.Drawing.Color.LightCoral})
+        Me.GunaChart1.Size = New System.Drawing.Size(783, 378)
+        Me.GunaChart1.TabIndex = 22
+        ChartFont2.FontName = "Arial"
+        ChartFont2.Size = 12
+        ChartFont2.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
+        Me.GunaChart1.Title.Font = ChartFont2
+        Me.GunaChart1.Title.Text = "Scan OUT"
+        ChartFont3.FontName = "Arial"
+        Me.GunaChart1.Tooltips.BodyFont = ChartFont3
+        Me.GunaChart1.Tooltips.DisplayColors = False
+        ChartFont4.FontName = "Arial"
+        ChartFont4.Size = 9
+        ChartFont4.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
+        Me.GunaChart1.Tooltips.TitleFont = ChartFont4
+        Me.GunaChart1.XAxes.GridLines = Grid1
+        ChartFont5.FontName = "Arial"
+        Tick1.Font = ChartFont5
+        Me.GunaChart1.XAxes.Ticks = Tick1
+        Me.GunaChart1.YAxes.GridLines = Grid2
+        ChartFont6.FontName = "Arial"
+        Tick2.Font = ChartFont6
+        Me.GunaChart1.YAxes.Ticks = Tick2
+        Me.GunaChart1.ZAxes.GridLines = Grid3
+        ChartFont7.FontName = "Arial"
+        PointLabel1.Font = ChartFont7
+        Me.GunaChart1.ZAxes.PointLabels = PointLabel1
+        ChartFont8.FontName = "Arial"
+        Tick3.Font = ChartFont8
+        Me.GunaChart1.ZAxes.Ticks = Tick3
+        '
+        'stacked
+        '
+        Me.stacked.Label = "StackedHorizontalBar1"
+        Me.stacked.LegendBoxBorderColor = System.Drawing.Color.Transparent
+        Me.stacked.LegendBoxFillColor = System.Drawing.Color.Transparent
+        Me.stacked.TargetChart = Me.GunaChart1
+        '
+        'GunaChart2
+        '
+        Me.GunaChart2.AutoScroll = True
+        Me.GunaChart2.Datasets.AddRange(New Guna.Charts.Interfaces.IGunaDataset() {Me.stacked, Me.stacked_IN})
+        Me.GunaChart2.Legend.Display = False
+        ChartFont9.FontName = "Arial"
+        Me.GunaChart2.Legend.LabelFont = ChartFont9
+        Me.GunaChart2.Location = New System.Drawing.Point(539, 25)
+        Me.GunaChart2.Name = "GunaChart2"
+        Me.GunaChart2.PaletteCustomColors.FillColors.AddRange(New System.Drawing.Color() {System.Drawing.Color.DarkSeaGreen})
+        Me.GunaChart2.Size = New System.Drawing.Size(783, 378)
+        Me.GunaChart2.TabIndex = 23
+        ChartFont10.FontName = "Arial"
+        ChartFont10.Size = 12
+        ChartFont10.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
+        Me.GunaChart2.Title.Font = ChartFont10
+        Me.GunaChart2.Title.Text = "Scan IN"
+        ChartFont11.FontName = "Arial"
+        Me.GunaChart2.Tooltips.BodyFont = ChartFont11
+        Me.GunaChart2.Tooltips.DisplayColors = False
+        ChartFont12.FontName = "Arial"
+        ChartFont12.Size = 9
+        ChartFont12.Style = Guna.Charts.WinForms.ChartFontStyle.Bold
+        Me.GunaChart2.Tooltips.TitleFont = ChartFont12
+        Me.GunaChart2.XAxes.GridLines = Grid4
+        ChartFont13.FontName = "Arial"
+        Tick4.Font = ChartFont13
+        Me.GunaChart2.XAxes.Ticks = Tick4
+        Me.GunaChart2.YAxes.GridLines = Grid5
+        ChartFont14.FontName = "Arial"
+        Tick5.Font = ChartFont14
+        Me.GunaChart2.YAxes.Ticks = Tick5
+        Me.GunaChart2.ZAxes.GridLines = Grid6
+        ChartFont15.FontName = "Arial"
+        PointLabel2.Font = ChartFont15
+        Me.GunaChart2.ZAxes.PointLabels = PointLabel2
+        ChartFont16.FontName = "Arial"
+        Tick6.Font = ChartFont16
+        Me.GunaChart2.ZAxes.Ticks = Tick6
+        '
+        'stacked_IN
+        '
+        Me.stacked_IN.FillColors.AddRange(New System.Drawing.Color() {System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))})
+        Me.stacked_IN.Label = "StackedHorizontalBar1"
+        Me.stacked_IN.LegendBoxBorderColor = System.Drawing.Color.Transparent
+        Me.stacked_IN.LegendBoxFillColor = System.Drawing.Color.Transparent
+        Me.stacked_IN.TargetChart = Me.GunaChart2
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(404, 22)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(46, 24)
+        Me.Button1.TabIndex = 2
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FG_stock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1344, 820)
+        Me.Controls.Add(Me.GunaChart2)
+        Me.Controls.Add(Me.GunaChart1)
         Me.Controls.Add(Me.Guna2GroupBox3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FG_stock"
@@ -210,4 +351,9 @@ Partial Class FG_stock
     Friend WithEvents export_excel As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents txt_search As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents GunaChart1 As Guna.Charts.WinForms.GunaChart
+    Friend WithEvents stacked As Guna.Charts.WinForms.GunaStackedHorizontalBarDataset
+    Friend WithEvents stacked_IN As Guna.Charts.WinForms.GunaStackedHorizontalBarDataset
+    Friend WithEvents GunaChart2 As Guna.Charts.WinForms.GunaChart
+    Friend WithEvents Button1 As Button
 End Class
