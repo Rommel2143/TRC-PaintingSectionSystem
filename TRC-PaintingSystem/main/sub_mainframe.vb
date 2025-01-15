@@ -30,7 +30,7 @@ Public Class sub_mainframe
     End Sub
 
     Private Sub StockMonitoringToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockMonitoringToolStripMenuItem.Click
-        display_formscan(New FG_stock, "FG Stock")
+        display_formscan(New Dashboard, "FG Stock")
     End Sub
 
     Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
