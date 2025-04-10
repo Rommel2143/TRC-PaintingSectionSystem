@@ -36,6 +36,9 @@ Public Class box_info
         If e.KeyCode = Keys.Enter Then
 
             displayinfo(txtqr.Text.Trim)
+            txtqr.Clear()
+            txtqr.Focus()
+
         End If
     End Sub
 End Class
