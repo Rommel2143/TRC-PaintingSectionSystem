@@ -344,6 +344,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="excelModule.vb" />
     <Compile Include="manage\device_info.Designer.vb">
       <DependentUpon>device_info.vb</DependentUpon>
     </Compile>
