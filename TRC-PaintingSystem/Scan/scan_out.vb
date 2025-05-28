@@ -137,7 +137,7 @@ Public Class scan_out
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='OUT',`batchout`='" & batch & "',`dateout`='" & datedb & "',`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='OUT',`batchout`='" & batch & "',`dateout`=CURDATE(),`timeOUT`=CURTIME(),`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
 
         Catch ex As Exception

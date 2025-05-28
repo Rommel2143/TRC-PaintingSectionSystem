@@ -152,7 +152,8 @@ Public Class scan_in
                                                                     `remarks`,
                                                                     `qty`,
                                                                     `located`,
-                                                                     `pcin`) 
+                                                                     `pcin`,
+                                                                       timeIN) 
 
                                                        VALUES('IN',
                                                               '" & batch & "',
@@ -164,7 +165,8 @@ Public Class scan_in
                                                               '" & remarks & "',
                                                               '" & qty & "',
                                                               'U1',
-                                                              '" & PCname & "')", con)
+                                                              '" & PCname & "',
+                                                                    CURTIME())", con)
             cmdinsert.ExecuteNonQuery()
 
         Catch ex As Exception

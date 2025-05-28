@@ -96,7 +96,7 @@ Public Class scan_return
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='IN', returned='" & idno & "',pcin='" & PCname & "' WHERE qrcode='" & qr & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='IN',`datein`=CURDATE(),timeIN=CURTIME(), returned='" & idno & "',pcin='" & PCname & "',dateOUT= NULL,timeOUT= NULL,userout='',pcOUT='' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
             refreshgrid()
         Catch ex As Exception

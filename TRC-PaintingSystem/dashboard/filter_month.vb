@@ -5,53 +5,42 @@ Public Class filter_month
         loaddata()
     End Sub
 
-
     Private Sub loaddata()
-        Dim selectedMonthName As String = cmb_box.SelectedItem.ToString()
-        Dim selectedYear As Integer = 2025
+        If cmb_box.SelectedIndex = -1 Then
+            MessageBox.Show("Please select a month.")
+            Exit Sub
+        End If
 
-        ' Convert the selected month name to a month number (1-12)
-        Dim monthNumber As Integer = DateTime.ParseExact(selectedMonthName, "MMMM", Globalization.CultureInfo.InvariantCulture).Month
+        Dim selectedMonth As Integer = cmb_box.SelectedIndex + 1
+        Dim selectedYear As Integer = Guna2NumericUpDown1.Value
 
-        ' Create Date objects for the start and end of the month
-        Dim startOfMonthDate As New DateTime(selectedYear, monthNumber, 1)
-        Dim endOfMonthDate As DateTime = startOfMonthDate.AddMonths(1).AddDays(-1)
-
-        ' Convert to string in format "yyyy-MM-dd"
-        Dim startOfMonth As String = startOfMonthDate.ToString("yyyy-MM-dd")
-        Dim endOfMonth As String = endOfMonthDate.ToString("yyyy-MM-dd")
-
+        ' Compute the last day of the selected month
+        Dim endOfMonth As New DateTime(selectedYear, selectedMonth, DateTime.DaysInMonth(selectedYear, selectedMonth))
+        Dim endOfMonthStr As String = endOfMonth.ToString("yyyy-MM-dd")
 
         Dim query As String = "
-    SELECT 
-        mm.partcode,
-        mm.partname,
-
-        IFNULL(mold.total_in, 0) AS 'IN',
-        IFNULL(mold.total_out, 0) AS 'OUT',
-        IFNULL(mold.box_count, 0) AS 'Box',
-        IFNULL(mold.total_in, 0) - IFNULL(mold.total_out, 0) AS Total
-
-    FROM painting_masterlist mm
-
-    LEFT JOIN (
-        SELECT partcode,
-
-            -- Sum of qty IN and OUT for the whole month
-            SUM(CASE WHEN dateIN BETWEEN '" & startOfMonth & "' AND '" & endOfMonth & "' THEN qty ELSE 0 END) AS total_in,
-            SUM(CASE WHEN dateOUT BETWEEN '" & startOfMonth & "' AND '" & endOfMonth & "' THEN qty ELSE 0 END) AS total_out,
-
-            -- Box count only before selected date
-            (SUM(CASE WHEN dateIN < '" & endOfMonth & "' THEN 1 ELSE 0 END) -
-             SUM(CASE WHEN dateOUT < '" & endOfMonth & "' THEN 1 ELSE 0 END)) AS box_count
-
-        FROM painting_stock
-        GROUP BY partcode
-    ) AS mold ON mm.partcode = mold.partcode
+        SELECT 
+            mm.partcode,
+            mm.partname,
+            IFNULL(painting.total_in, 0) AS Molding_IN,
+            IFNULL(painting.total_out, 0) AS Molding_OUT,
+            IFNULL(painting.box_count, 0) AS Molding_BoxCount,
+            IFNULL(painting.total, 0) AS Molding_Total
+        FROM painting_masterlist mm
+        LEFT JOIN (
+            SELECT partcode,
+                SUM(CASE WHEN MONTH(dateIN) = " & selectedMonth & " THEN qty ELSE 0 END) AS total_in,
+                SUM(CASE WHEN MONTH(dateOUT) = " & selectedMonth & " THEN qty ELSE 0 END) AS total_out,
+                (SUM(CASE WHEN dateIN <= '" & endOfMonthStr & "' THEN 1 ELSE 0 END) -
+                 SUM(CASE WHEN dateOUT <= '" & endOfMonthStr & "' THEN 1 ELSE 0 END)) AS box_count,
+                (SUM(CASE WHEN dateIN <= '" & endOfMonthStr & "' THEN qty ELSE 0 END) -
+                 SUM(CASE WHEN dateOUT <= '" & endOfMonthStr & "' THEN qty ELSE 0 END)) AS total
+            FROM painting_stock
+            GROUP BY partcode
+        ) AS painting ON mm.partcode = painting.partcode
     "
 
         reload(query, datagrid1)
-        StyleDataGrid()
     End Sub
 
 
@@ -141,16 +130,13 @@ Public Class filter_month
 
     End Sub
 
-    Private Sub dtpicker1_ValueChanged(sender As Object, e As EventArgs)
-        loaddata()
-    End Sub
+
 
     Private Sub Guna2Button2_Click(sender As Object, e As EventArgs) Handles Guna2Button2.Click
         exportExcel(datagrid1, "Molding FG Stocks", cmb_box.Text)
     End Sub
 
-
-
-
-
+    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
+        loaddata()
+    End Sub
 End Class
