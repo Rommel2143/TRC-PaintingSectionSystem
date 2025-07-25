@@ -52,10 +52,10 @@ Public Class Dashboard
         Try
             con.Close()
             con.Open()
-            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode,SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
+            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode, fs.qty AS SPQ, SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
                                                     JOIN painting_masterlist fm ON fm.partcode=fs.partcode
                                                     WHERE fs.status='IN'
-                                                    GROUP BY fs.partcode", con)
+                                                    GROUP BY fs.partcode,fs.qty", con)
 
             Dim da As New MySqlDataAdapter(cmdpainting_stock)
             Dim dt As New DataTable
@@ -75,10 +75,10 @@ Public Class Dashboard
         Try
             con.Close()
             con.Open()
-            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode,SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
+            Dim cmdpainting_stock As New MySqlCommand("SELECT fm.partname,fs.partcode, fs.qty AS SPQ, SUM(fs.qty) AS TOTAL_Stock FROM `painting_stock` fs 
                                                     JOIN painting_masterlist fm ON fm.partcode=fs.partcode
                                                     WHERE fs.status='IN' and (fm.partname REGEXP '" & txt_search.Text & "' or fs.partcode REGEXP '" & txt_search.Text & "')
-                                                    GROUP BY fs.partcode", con)
+                                                    GROUP BY fs.partcode,fs.qty ", con)
 
             Dim da As New MySqlDataAdapter(cmdpainting_stock)
             Dim dt As New DataTable
@@ -104,7 +104,7 @@ Public Class Dashboard
             Using cmd As New MySqlCommand("SELECT CONCAT(partname, '-', ps.partcode) AS parts, SUM(qty) AS total FROM `painting_stock` ps " &
                                            "LEFT JOIN painting_masterlist pm ON pm.partcode = ps.partcode " &
                                            "WHERE dateout = CURRENT_DATE " &
-                                           "GROUP BY ps.partcode", con)
+                                           "GROUP BY ps.partcode,qty", con)
                 Using dr = cmd.ExecuteReader()
                     While dr.Read()
                         ' Convert date_apply to a formatted date and add the data points
@@ -192,7 +192,7 @@ Public Class Dashboard
             Using cmd As New MySqlCommand("SELECT CONCAT(partname, '-', ps.partcode) AS parts, SUM(qty) AS total FROM `painting_stock` ps " &
                                            "LEFT JOIN painting_masterlist pm ON pm.partcode = ps.partcode " &
                                            "WHERE datein = CURRENT_DATE " &
-                                           "GROUP BY ps.partcode", con)
+                                           "GROUP BY ps.partcode,qty", con)
                 Using dr = cmd.ExecuteReader()
                     While dr.Read()
                         ' Convert date_apply to a formatted date and add the data points

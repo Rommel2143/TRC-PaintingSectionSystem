@@ -70,7 +70,14 @@ Public Class scan_out
 
                         Case "IN"
                             'update
-                            update_painting_stock(qrcode)
+                            Dim outstat As String = ""
+                            Select Case Guna2ComboBox1.SelectedIndex
+                                Case 0
+                                    outstat = "OPK"
+                                Case 1
+                                    outstat = "OUT"
+                            End Select
+                            update_painting_stock(qrcode, outstat)
 
                         Case "OUT"
                             'duplicate
@@ -132,12 +139,12 @@ Public Class scan_out
         End Try
     End Sub
 
-    Private Sub update_painting_stock(qr As String)
+    Private Sub update_painting_stock(qr As String, status As String)
         Try
 
             con.Close()
             con.Open()
-            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='OUT',`batchout`='" & batch & "',`dateout`=CURDATE(),`timeOUT`=CURTIME(),`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
+            Dim cmdupdate As New MySqlCommand("UPDATE `painting_stock` SET `status`='" & status & "',`batchout`='" & batch & "',`dateout`=CURDATE(),`timeOUT`=CURTIME(),`userout`='" & idno & "',`boxno`='" & txt_box.Text & "',`pcout`='" & PCname & "' WHERE qrcode='" & qr & "'", con)
             cmdupdate.ExecuteNonQuery()
 
         Catch ex As Exception
@@ -174,5 +181,13 @@ Public Class scan_out
 
     Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel1.Paint
 
+    End Sub
+
+    Private Sub Guna2ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Guna2ComboBox1.SelectedIndexChanged
+        If Guna2ComboBox1.SelectedIndex = -1 Then
+
+        Else
+            panel1.Enabled = True
+        End If
     End Sub
 End Class

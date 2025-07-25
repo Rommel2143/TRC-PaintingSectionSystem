@@ -39,23 +39,24 @@ Partial Class scan_out
         Me.batchcode = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtqr = New Guna.UI2.WinForms.Guna2TextBox()
         Me.datagrid1 = New Guna.UI2.WinForms.Guna2DataGridView()
+        Me.Guna2ComboBox1 = New Guna.UI2.WinForms.Guna2ComboBox()
+        Me.panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Panel1.SuspendLayout()
         Me.Guna2GroupBox1.SuspendLayout()
         CType(Me.datagrid2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datagrid1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Guna2Panel1
         '
-        Me.Guna2Panel1.Controls.Add(Me.txt_box)
-        Me.Guna2Panel1.Controls.Add(Me.Guna2Button1)
+        Me.Guna2Panel1.Controls.Add(Me.panel1)
+        Me.Guna2Panel1.Controls.Add(Me.Guna2ComboBox1)
         Me.Guna2Panel1.Controls.Add(Me.Guna2GroupBox1)
-        Me.Guna2Panel1.Controls.Add(Me.batchcode)
-        Me.Guna2Panel1.Controls.Add(Me.txtqr)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel1.Name = "Guna2Panel1"
-        Me.Guna2Panel1.Size = New System.Drawing.Size(1225, 243)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1225, 272)
         Me.Guna2Panel1.TabIndex = 2
         '
         'txt_box
@@ -72,9 +73,8 @@ Partial Class scan_out
         Me.txt_box.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txt_box.IconLeft = CType(resources.GetObject("txt_box.IconLeft"), System.Drawing.Image)
         Me.txt_box.IconLeftSize = New System.Drawing.Size(25, 25)
-        Me.txt_box.Location = New System.Drawing.Point(494, 102)
+        Me.txt_box.Location = New System.Drawing.Point(449, 63)
         Me.txt_box.Name = "txt_box"
-        Me.txt_box.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txt_box.PlaceholderText = "Scan Box no..."
         Me.txt_box.SelectedText = ""
         Me.txt_box.Size = New System.Drawing.Size(147, 36)
@@ -93,7 +93,7 @@ Partial Class scan_out
         Me.Guna2Button1.ForeColor = System.Drawing.Color.White
         Me.Guna2Button1.Image = CType(resources.GetObject("Guna2Button1.Image"), System.Drawing.Image)
         Me.Guna2Button1.ImageSize = New System.Drawing.Size(30, 30)
-        Me.Guna2Button1.Location = New System.Drawing.Point(82, 177)
+        Me.Guna2Button1.Location = New System.Drawing.Point(37, 105)
         Me.Guna2Button1.Name = "Guna2Button1"
         Me.Guna2Button1.ShadowDecoration.Color = System.Drawing.Color.Silver
         Me.Guna2Button1.ShadowDecoration.Enabled = True
@@ -190,9 +190,8 @@ Partial Class scan_out
         Me.batchcode.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.batchcode.IconLeft = CType(resources.GetObject("batchcode.IconLeft"), System.Drawing.Image)
         Me.batchcode.IconLeftSize = New System.Drawing.Size(25, 25)
-        Me.batchcode.Location = New System.Drawing.Point(82, 49)
+        Me.batchcode.Location = New System.Drawing.Point(37, 9)
         Me.batchcode.Name = "batchcode"
-        Me.batchcode.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.batchcode.PlaceholderText = "Enter Batch..."
         Me.batchcode.SelectedText = ""
         Me.batchcode.Size = New System.Drawing.Size(201, 36)
@@ -212,9 +211,8 @@ Partial Class scan_out
         Me.txtqr.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtqr.IconLeft = CType(resources.GetObject("txtqr.IconLeft"), System.Drawing.Image)
         Me.txtqr.IconLeftSize = New System.Drawing.Size(25, 25)
-        Me.txtqr.Location = New System.Drawing.Point(82, 102)
+        Me.txtqr.Location = New System.Drawing.Point(37, 63)
         Me.txtqr.Name = "txtqr"
-        Me.txtqr.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtqr.PlaceholderText = "Scan QR..."
         Me.txtqr.SelectedText = ""
         Me.txtqr.Size = New System.Drawing.Size(389, 36)
@@ -249,7 +247,7 @@ Partial Class scan_out
         Me.datagrid1.DefaultCellStyle = DataGridViewCellStyle7
         Me.datagrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.datagrid1.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.datagrid1.Location = New System.Drawing.Point(0, 243)
+        Me.datagrid1.Location = New System.Drawing.Point(0, 272)
         Me.datagrid1.Name = "datagrid1"
         Me.datagrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
@@ -262,7 +260,7 @@ Partial Class scan_out
         Me.datagrid1.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.datagrid1.RowHeadersVisible = False
         Me.datagrid1.RowTemplate.Height = 25
-        Me.datagrid1.Size = New System.Drawing.Size(1225, 566)
+        Me.datagrid1.Size = New System.Drawing.Size(1225, 537)
         Me.datagrid1.TabIndex = 3
         Me.datagrid1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(CType(CType(244, Byte), Integer), CType(CType(244, Byte), Integer), CType(CType(244, Byte), Integer))
         Me.datagrid1.ThemeStyle.AlternatingRowsStyle.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -286,6 +284,34 @@ Partial Class scan_out
         Me.datagrid1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.datagrid1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
         '
+        'Guna2ComboBox1
+        '
+        Me.Guna2ComboBox1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+        Me.Guna2ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Guna2ComboBox1.FocusedColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Guna2ComboBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.Guna2ComboBox1.Font = New System.Drawing.Font("Segoe UI", 10.0!)
+        Me.Guna2ComboBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(68, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(112, Byte), Integer))
+        Me.Guna2ComboBox1.ItemHeight = 30
+        Me.Guna2ComboBox1.Items.AddRange(New Object() {"For Next Packing Process", "To Customer"})
+        Me.Guna2ComboBox1.Location = New System.Drawing.Point(82, 40)
+        Me.Guna2ComboBox1.Name = "Guna2ComboBox1"
+        Me.Guna2ComboBox1.Size = New System.Drawing.Size(201, 36)
+        Me.Guna2ComboBox1.TabIndex = 207
+        '
+        'panel1
+        '
+        Me.panel1.Controls.Add(Me.txt_box)
+        Me.panel1.Controls.Add(Me.Guna2Button1)
+        Me.panel1.Controls.Add(Me.batchcode)
+        Me.panel1.Controls.Add(Me.txtqr)
+        Me.panel1.Enabled = False
+        Me.panel1.Location = New System.Drawing.Point(45, 87)
+        Me.panel1.Name = "panel1"
+        Me.panel1.Size = New System.Drawing.Size(619, 168)
+        Me.panel1.TabIndex = 208
+        '
         'scan_out
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -301,6 +327,7 @@ Partial Class scan_out
         Me.Guna2GroupBox1.ResumeLayout(False)
         CType(Me.datagrid2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.datagrid1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -314,4 +341,6 @@ Partial Class scan_out
     Friend WithEvents datagrid1 As Guna.UI2.WinForms.Guna2DataGridView
     Friend WithEvents Guna2DataGridViewStyler1 As Guna.UI2.WinForms.Guna2DataGridViewStyler
     Friend WithEvents txt_box As Guna.UI2.WinForms.Guna2TextBox
+    Friend WithEvents Guna2ComboBox1 As Guna.UI2.WinForms.Guna2ComboBox
+    Friend WithEvents panel1 As Guna.UI2.WinForms.Guna2Panel
 End Class

@@ -22,21 +22,23 @@ Public Class filter_month
         SELECT 
             mm.partcode,
             mm.partname,
-            IFNULL(painting.total_in, 0) AS Molding_IN,
-            IFNULL(painting.total_out, 0) AS Molding_OUT,
-            IFNULL(painting.box_count, 0) AS Molding_BoxCount,
-            IFNULL(painting.total, 0) AS Molding_Total
+             IFNULL(painting.qty, 0) AS SPQ,
+            IFNULL(painting.total_in, 0) AS 'IN',
+            IFNULL(painting.total_out, 0) AS 'OUT',
+            IFNULL(painting.box_count, 0) AS BoxCount,
+            IFNULL(painting.total, 0) AS Total
         FROM painting_masterlist mm
         LEFT JOIN (
             SELECT partcode,
-                SUM(CASE WHEN MONTH(dateIN) = " & selectedMonth & " THEN qty ELSE 0 END) AS total_in,
-                SUM(CASE WHEN MONTH(dateOUT) = " & selectedMonth & " THEN qty ELSE 0 END) AS total_out,
+qty,
+                SUM(CASE WHEN MONTH(dateIN) = " & selectedMonth & " AND YEAR(dateIN) = " & selectedYear & " THEN qty ELSE 0 END) AS total_in,
+                SUM(CASE WHEN MONTH(dateOUT) = " & selectedMonth & "  AND YEAR(dateout) = " & selectedYear & " THEN qty ELSE 0 END) AS total_out,
                 (SUM(CASE WHEN dateIN <= '" & endOfMonthStr & "' THEN 1 ELSE 0 END) -
                  SUM(CASE WHEN dateOUT <= '" & endOfMonthStr & "' THEN 1 ELSE 0 END)) AS box_count,
                 (SUM(CASE WHEN dateIN <= '" & endOfMonthStr & "' THEN qty ELSE 0 END) -
                  SUM(CASE WHEN dateOUT <= '" & endOfMonthStr & "' THEN qty ELSE 0 END)) AS total
             FROM painting_stock
-            GROUP BY partcode
+            GROUP BY partcode,qty
         ) AS painting ON mm.partcode = painting.partcode
     "
 
